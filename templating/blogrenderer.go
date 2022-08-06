@@ -31,3 +31,18 @@ func (r *PostRenderer) Render(w io.Writer, p Post) error {
 
 	return nil
 }
+
+func (r *PostRenderer) RenderIndex(w io.Writer, posts []Post) error {
+	indexTemplate := `<ol>{{range .}}<li><a href="/post/{{.SanitisedTitle}}">{{.Title}}</a></li>{{end}}</ol>`
+
+	templ, err := template.New("index").Parse(indexTemplate)
+	if err != nil {
+		return err
+	}
+
+	if err := templ.Execute(w, posts); err != nil {
+		return err
+	}
+
+	return nil
+}
