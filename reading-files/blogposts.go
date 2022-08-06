@@ -1,7 +1,6 @@
 package blogposts
 
 import (
-	"io"
 	"io/fs"
 )
 
@@ -27,12 +26,5 @@ func getPost(fileSystem fs.FS, f fs.DirEntry) (Post, error) {
 		return Post{}, err
 	}
 	defer postFile.Close()
-
-	postData, err := io.ReadAll(postFile)
-	if err != nil {
-		return Post{}, err
-	}
-
-	post := Post{Title: string(postData)[7:]}
-	return post, nil
+	return newPost(postFile)
 }
