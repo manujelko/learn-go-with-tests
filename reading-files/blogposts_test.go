@@ -32,7 +32,7 @@ Description: Description 2`
 	}
 
 	assertPost(t, posts[0], blogposts.Post{
-		Title: "Post 1",
+		Title:       "Post 1",
 		Description: "Description 1",
 	})
 }
