@@ -1,3 +1,5 @@
 package blogposts
 
-type Post struct {}
+type Post struct {
+	Title string
+}
